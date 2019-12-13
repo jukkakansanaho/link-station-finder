@@ -7,17 +7,17 @@
  * @return  {Object} best_ls  The best link station for point.
  *                            Format: {"x": 0, "y": 0, "r": 0, "p": 0}
  **/
-function find_link_station(point) {
-  let link_stations = get_link_stations();
+function findLinkStation(point) {
+  let link_stations = getLinkStations();
   let distances = [];
   const point_ = {};
-  point_['x'] = point[0];
-  point_['y'] = point[1];
+  point_['x'] = point['x'];
+  point_['y'] = point['y'];
   let reachable = false;
 
   for (let ls of link_stations) {
-    let distance = calculate_distance(point_, ls);
-    let power = calculate_power(ls, distance);
+    let distance = calculateDistance(point_, ls);
+    let power = calculatePower(ls, distance);
     ls['p'] = power;
 
     if (power !== 0) {
@@ -25,8 +25,8 @@ function find_link_station(point) {
     }
   }
 
-  let best_ls = find_most_suitable_link_station(link_stations);
-  print_response(point_, best_ls, reachable);
+  let best_ls = findMostSuitableLinkStation(link_stations);
+  prepareResponse(point_, best_ls, reachable);
 
   return best_ls;
 }
@@ -35,7 +35,7 @@ function find_link_station(point) {
  * Get Link stations
  * @return  {Array} link_stations All available link stations.
  **/
-function get_link_stations() {
+function getLinkStations() {
   let link_stations = [
     {
       x: 0,
@@ -66,7 +66,7 @@ function get_link_stations() {
  * @return  {Object} best_ls  The best link station for point.
  *                            Format: {"x": 0, "y": 0, "r": 0, "p": 0}
  **/
-function calculate_distance(point, link_station) {
+function calculateDistance(point, link_station) {
   let x_distance = point['x'] - link_station['x']; // x1 - x2
   let y_distance = point['y'] - link_station['y']; // y1 - y2
 
@@ -81,7 +81,7 @@ function calculate_distance(point, link_station) {
  * @param   {Number} distance     Distance between link station and point.
  * @return  {Number} power        Power output of the link station.
  **/
-function calculate_power(link_station, distance) {
+function calculatePower(link_station, distance) {
   const reach = link_station['r'];
   let power = 0.0;
 
@@ -99,7 +99,7 @@ function calculate_power(link_station, distance) {
  * @param  {Array}  link_stations All link stattions with power outputs calculated.
  * @return {Object} max_ls        Most suitable link station.
  **/
-function find_most_suitable_link_station(link_stations) {
+function findMostSuitableLinkStation(link_stations) {
   let max_power = 0.0;
   let max_ls = {};
   for (let ls of link_stations) {
@@ -118,7 +118,7 @@ function find_most_suitable_link_station(link_stations) {
  * @param  {Object}   best_ls     The best link station (object).
  * @param  {Boolean}  reachable   Is best_ls reacable by any link station.
  **/
-function print_response(point_, best_ls, reachable) {
+function prepareResponse(point_, best_ls, reachable) {
   response1 =
     'Best link station for point ' +
     point_['x'] +
@@ -141,4 +141,4 @@ function print_response(point_, best_ls, reachable) {
   }
 }
 
-module.exports = find_link_station;
+module.exports = findLinkStation;
