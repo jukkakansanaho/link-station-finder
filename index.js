@@ -1,10 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const keys = require('./config/keys');
+const cors = require('cors');
 
 const app = express();
-
-// Express Middlewares:
+app.use(cors());
 app.use(bodyParser.json());
 
 require('./routes/linkStationRoutes')(app);

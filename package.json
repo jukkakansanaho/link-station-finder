@@ -1,5 +1,5 @@
 {
-  "name": "dev",
+  "name": "link-station-finder",
   "version": "0.0.1",
   "description": "Link-Station-Finder is a service to find most suitable Link Station for a given device to connect to.",
   "main": "index.js",
@@ -12,7 +12,8 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run webhook\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
@@ -24,11 +25,12 @@
   "author": "Jukka Kansanaho",
   "email": "jukka.kansanaho@gmail.com",
   "license": "ISC",
-  "homepage": "https://github.org/jukkakansanaho/link-server-finder#readme",
+  "homepage": "https://github.org/jukkakansanaho/link-station-finder#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
     "concurrently": "^3.5.1",
     "cookie-session": "^2.0.0-beta.3",
+    "cors": "2.8.4",
     "express": "^4.16.3",
     "lodash": "^4.17.11",
     "nodemon": "^1.17.4",
