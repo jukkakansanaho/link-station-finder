@@ -2,6 +2,8 @@ _Find the best link station for a device | jukka.kansanaho@gmail.com | 2019-12-1
 
 # Find the best link station for a device
 
+![LinkStationFinder](./LinkStationFinder-pic1-20191216.png)
+
 ## Target of the project
 
 This project provides a solution to the following problem:
