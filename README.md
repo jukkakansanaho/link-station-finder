@@ -32,6 +32,9 @@ _Target:_ find a most suitable link station (with most power) for a device to co
 
 - Clone this repo (`git clone https://github.com/jukkakansanaho/link-station-finder.git`)
 - Go to cloned **link-station-finder** folder
+- Rename `config/dev-template.js` to `config/dev.js`
+  - This dev.js file is a location for development phase secrets/keys when expanding the service.
+  - NOTE: **dev.js file is needed to run the service locally with** `npm run dev`
 - Run node on console: `node`
 - Type: `const findLinkStation = require('./finder_cli');`
 - Type function name with the point coordinates (x,y) as an object e.g.: `findLinkStation({"x":0, "y":0})`
