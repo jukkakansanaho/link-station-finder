@@ -2,6 +2,7 @@
 node_modules
 config/dev.js
 npm-debug.log
+/build
 
 # Mac
 .DS_Store

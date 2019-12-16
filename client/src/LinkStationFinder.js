@@ -52,9 +52,9 @@ class LinkStationFinder extends Component {
     } else {
       this.state.response = '"Response-not-found"';
     }
-    console.log('RES: ' + this.state.summary);
-    console.log('RES: ' + this.state.response);
-    console.log('RES: ' + JSON.stringify(this.state.best_ls));
+    // console.log('RES: ' + this.state.summary);
+    // console.log('RES: ' + this.state.response);
+    // console.log('RES: ' + JSON.stringify(this.state.best_ls));
   };
 
   /**
