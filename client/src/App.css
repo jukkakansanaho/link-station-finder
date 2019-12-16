@@ -62,7 +62,7 @@ p {
   color: green;
 }
 
-.Response--not-found {
+.Response-not-found {
   color: red;
 }
 
@@ -72,6 +72,7 @@ table {
   padding: 5px 5px 5px 5px;
   border: 3px solid grey;
   border-collapse: collapse;
+  border-radius: 3px;
 }
 
 th {
@@ -84,25 +85,39 @@ thead {
 }
 
 fieldset {
+  font-family: Raleway;
   background-color: #282c34;
   margin: 50px auto;
   margin-left: 150px;
   margin-right: 150px;
   padding: 10px 5px 10px 5px;
-  border: 5px solid;
+  border: 5px solid #800080;
 }
 
+.Response-fieldset {
+  border: 5px solid lightblue;
+}
 input {
+  background-color: lightgrey;
   margin: 5px auto;
-  padding: 3px 3px 3px 3px;
+  padding: 4px 5px 4px 5px;
+  border-radius: 3px;
+  font-size: 16px;
+  font-family: Raleway;
+}
+
+input:focus {
+  background-color: #b300b3;
 }
 
 button {
   background-color: #800080;
   color: white;
   font-size: 18px;
-  padding: 5px 10px 5px 10px;
+  padding: 5px 40px 5px 40px;
   margin: 10px 5px 5px 5px;
+  border-radius: 3px;
+  font: bold;
 }
 
 .App-link {

@@ -1,6 +1,10 @@
 const LinkStationHelper = require('../services/LinkStationHelper');
 
 module.exports = app => {
+  /**
+   * Route for listing all available Link Stations.
+   * @return  {Array} res  Array of available Link Stations.
+   **/
   app.get('/api/linkstations', (req, res) => {
     const lsh = new LinkStationHelper();
     try {
@@ -11,6 +15,10 @@ module.exports = app => {
     }
   });
 
+  /**
+   * Route for finding best suitable Link Station for the point's x,y coordinates.
+   * @return  {Object} res  JSON object with summary text and Link Station details as an object.
+   **/
   app.get('/api/linkstation/find/:x/:y', async (req, res) => {
     const point = {};
     point['x'] = req.params.x;

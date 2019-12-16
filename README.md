@@ -16,6 +16,8 @@ _Target:_ find a most suitable link station (with most power) for a device to co
 
 ## Prerequisites
 
+- [Git](https://git-scm.com/) installed locally for source code version control and Heroku deployments.
+- [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) installed locally for Heroku deployments.
 - [Node.js](https://nodejs.org/) installed locally for development.
 - [python.org](https://python.org/) installed locally for Jest tests.
   - Note: [Anaconda](https://www.anaconda.com/distribution/) is recommended as a framework for python installations.
@@ -23,7 +25,7 @@ _Target:_ find a most suitable link station (with most power) for a device to co
 
 ## Used Technologies
 
-- Frontend: React
+- Frontend: React, Redux
 - Backend: Express (nodejs), (MongoDB)
 
 # HOWTO run the program in console
@@ -59,26 +61,49 @@ To run the server do the following:
   - `http://localhost:5000/api/linkstation/find/x/y`
     - Replace x with point's x-coordinate, y with y-coordinate
     - => Server responses with JSON object: { summary: "< summaryText >", "best_ls": { linkStationObject } }
-  - `http://localhost:5000/api/linkstations`
-    - => Server responses with array of JSON objects: [ listOfLinkServersObjects ]
+  - `http://localhost:5000/api/linkstations` - => Server responses with array of JSON objects: [ listOfLinkServersObjects ]
+
+To run both server and client locally:
+
+- Go to cloned **link-station-finder** folder
+- Run `npm run dev`
+  - command starts both nodejs server (http://localhost:3000) and React client app (http://localhost:3000)
+- Service opens client app to browser (http://localhost:3000)
 
 # HOWTO use the service
 
-- ...
+- Client
+  - Client shows available Link Station under "Available Link Stations:"
+  - Type in point/device X and Y coordinates and press "FIND".
+  - Client tells which Link Station best suites your coordinates.
+    - Client also shows the details of that Link Station.
+
+# HOWTO deploy service to Heroku
+
+- Create Heroku account (https://heroku.com)
+- Go to **link-station-finder** folder
+- Install Heroku CLI (https://devcenter.heroku.com/articles/heroku-cli)
+- Login to Heroku CLI: `heroku login`
+- Create Heroku app: `heroku create`
+  - This creates a Heroku app for you (link to app and to app git repo)
+- Add Heroku as git remote: `git remote add heroku <Heroku app's git repo>`
+- Push changes to Heroku repo == deploy the app: `git push heroku master`
+  - This deploys your app to heroku server.
+  - Now Client app is available in URL Heroku gave for the app (https://<Heroku app name>.herokuapp.com/).
 
 # Other Notes
 
 - Command line version and Service have the following predefined Link Stations where the point/device coordinates are compared to:
-  - Link-Station-1: { "x": 0, "y": 0, "reach": 10}
-  - Link-Station-2: { "x": 20, "y": 20, "reach": 5}
-  - Link-Station-3: { "x": 10, "y": 0, "reach": 12}
+  - Link-Station-1: { "id": 1, "x": 0, "y": 0, "reach": 10}
+  - Link-Station-2: { "id": 2, "x": 20, "y": 20, "reach": 5}
+  - Link-Station-3: { "id": 3, "x": 10, "y": 0, "reach": 12}
 
 # Further development options
 
 - Add DB (e.g. MongoDB) to store Link Station data.
 - Add DB to store all requested point/device coordinates with most suitable Link Station to connect to.
 - Add (protected access) Admin section to the UI to add Link Stations to the service.
-- Add visualisation to the front-end to show Links Stations and requested points/devices on a grid canvas.
+- Add visualisation to the front-end to show Links Stations and requested points/devices on a canvas.
 - Add tests for backend and front-end of the solution.
 - Add more error handling and special case handling to the code.
 - Add Continuous Integration/Continuous Delivery (CI/CD) pipeline to automatically test and deploy changes done to backend or front-end. E.g. TravisCI, Jenkins, or CircleCI.

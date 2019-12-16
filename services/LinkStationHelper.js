@@ -1,3 +1,4 @@
+const LinkStations = require('./LinkStations');
 /**
  * LinkStationHelper class with helper function for the main probgram.
  * @param   {Object}  point   Point object with x and y coordinates e.g. {"x": 0, "y": 0}.
@@ -51,30 +52,7 @@ class LinkStationHelper {
    * @return  {Array} link_stations All available link stations.
    **/
   getLinkStations() {
-    let link_stations = [
-      {
-        id: 1,
-        x: 0,
-        y: 0,
-        reach: 10,
-        power: 0.0,
-      },
-      {
-        id: 2,
-        x: 20,
-        y: 20,
-        reach: 5,
-        power: 0.0,
-      },
-      {
-        id: 3,
-        x: 10,
-        y: 0,
-        reach: 12,
-        power: 0.0,
-      },
-    ];
-    return link_stations;
+    return LinkStations;
   }
 
   /**
@@ -161,11 +139,9 @@ class LinkStationHelper {
     };
 
     if (reachable === true) {
-      console.log(res_str_1);
       res_obj['summary'] = res_str_1;
       return res_obj;
     } else {
-      console.log(res_str_2);
       res_obj['summary'] = res_str_2;
       return res_obj;
     }

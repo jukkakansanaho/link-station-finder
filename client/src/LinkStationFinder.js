@@ -12,16 +12,30 @@ class LinkStationFinder extends Component {
     response: '',
   };
 
+  /**
+   * Do this when the page is rendered.
+   **/
   componentDidMount() {
     this.fetchLinkStations();
   }
 
+  /**
+   * Fetch all Link Stations and set state values accordingly.
+   *
+   **/
   async fetchLinkStations() {
     const linkstations = await axios.get('/api/linkstations');
     this.setState({ linkstations: linkstations.data });
     console.log(linkstations);
   }
 
+  /**
+   * Fetch best suitable Link Station based on given x,y coordinates.
+   * Set state with response values.
+   * @param {Number} x  Point's X coordinate.
+   * @param {Number} y  Point's Y coordinate.
+   *
+   **/
   handleSubmit = async event => {
     event.preventDefault();
     let path = '/api/linkstation/find/' + this.state.x + '/' + this.state.y;
@@ -33,37 +47,47 @@ class LinkStationFinder extends Component {
       y: '',
     });
 
-    //if (res )
-    // console.log('RES: ' + this.state.summary);
-    // console.log('RES: ' + JSON.stringify(this.state.best_ls));
+    if (res.data.best_ls === {}) {
+      this.state.response = '"Response-found"';
+    } else {
+      this.state.response = '"Response-not-found"';
+    }
+    console.log('RES: ' + this.state.summary);
+    console.log('RES: ' + this.state.response);
+    console.log('RES: ' + JSON.stringify(this.state.best_ls));
   };
 
+  /**
+   * Render response for handleSubmit query.
+   **/
   renderFoundLinkStation() {
     const res = [];
 
     if (this.state.summary !== '') {
       res.push(
-        <div>
-          <h5 className="App-text">Best Suitable Link Station:</h5>
-          <div className={this.state.response}>{this.state.summary}</div>
-          <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>X-coordinate</th>
-                <th>Y-coordinate</th>
-                <th>Reach</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>{this.state.best_ls.id}</th>
-                <th>{this.state.best_ls.x}</th>
-                <th>{this.state.best_ls.y}</th>
-                <th>{this.state.best_ls.reach}</th>
-              </tr>
-            </tbody>
-          </table>
+        <div key="100">
+          <fieldset className="Response-fieldset">
+            <legend className="App-text">Best Suitable Link Station</legend>
+            <div className={this.state.response}>{this.state.summary}</div>
+            <table>
+              <thead>
+                <tr key="0">
+                  <th>ID</th>
+                  <th>X-coordinate</th>
+                  <th>Y-coordinate</th>
+                  <th>Reach</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr key={this.state.best_ls.id}>
+                  <th>{this.state.best_ls.id}</th>
+                  <th>{this.state.best_ls.x}</th>
+                  <th>{this.state.best_ls.y}</th>
+                  <th>{this.state.best_ls.reach}</th>
+                </tr>
+              </tbody>
+            </table>
+          </fieldset>
         </div>
       );
     }
@@ -71,6 +95,9 @@ class LinkStationFinder extends Component {
     return res;
   }
 
+  /**
+   * Render available Link Stations as a table.
+   **/
   renderLinkStations() {
     const stations = [];
 
@@ -88,6 +115,9 @@ class LinkStationFinder extends Component {
     return stations;
   }
 
+  /**
+   * Render whole page.
+   **/
   render() {
     return (
       <div>
@@ -113,15 +143,18 @@ class LinkStationFinder extends Component {
               <input
                 value={this.state.x}
                 onChange={event => this.setState({ x: event.target.value })}
+                name="Type in X-coordinate"
+                autoFocus
               />
               <br />
               Y:{' '}
               <input
                 value={this.state.y}
                 onChange={event => this.setState({ y: event.target.value })}
+                name="Type in Y-coordinate"
               />
               <br />
-              <button>Submit</button>
+              <button>FIND</button>
             </fieldset>
           </form>
         </div>
