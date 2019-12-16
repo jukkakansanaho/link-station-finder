@@ -70,7 +70,7 @@ To run both server and client locally:
 
 - Go to cloned **link-station-finder** folder
 - Run `npm run dev`
-  - command starts both nodejs server (http://localhost:3000) and React client app (http://localhost:3000)
+  - command starts both nodejs server (http://localhost:5000) and React client app (http://localhost:3000)
 - Service opens client app to browser (http://localhost:3000)
 
 # HOWTO use the service
