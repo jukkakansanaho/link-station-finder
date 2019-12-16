@@ -17,20 +17,14 @@ class LinkStationFinder extends Component {
   }
 
   async fetchLinkStations() {
-    const linkstations = await axios.get(
-      'http://localhost:5000/api/linkstations'
-    );
+    const linkstations = await axios.get('/api/linkstations');
     this.setState({ linkstations: linkstations.data });
     console.log(linkstations);
   }
 
   handleSubmit = async event => {
     event.preventDefault();
-    let path =
-      'http://localhost:5000/api/linkstation/find/' +
-      this.state.x +
-      '/' +
-      this.state.y;
+    let path = '/api/linkstation/find/' + this.state.x + '/' + this.state.y;
     const res = await axios.get(path);
     this.setState({
       summary: res.data.summary,
